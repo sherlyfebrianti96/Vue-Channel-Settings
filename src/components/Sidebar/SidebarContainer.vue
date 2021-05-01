@@ -3,36 +3,107 @@
     <div class="w-full h-full bg-gray-800 opacity-70">
     </div>
     <div class="fixed top-0 left-0 bg-white h-full w-10/12 md:w-6/12 lg:w-6/12 xl:w-2/12">
-      <SidebarMenu />
+      <SidebarLogo />
+
+      <div class="menus-container mt-2">
+        <div
+          v-for="(menu, i) in menus"
+          :key="`menu-${i}`"
+        >
+          <SidebarMenu :menu="menu" @toggleMenuExpand="toggleMenuExpand(i)" />
+          <SidebarSubmenu
+            v-if="menu.expand"
+            :submenus="menu.children"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import SidebarMenu from "@/components/Sidebar/SidebarMenu";
+import SidebarLogo from "@/components/Sidebar/SidebarLogo";
+import SidebarSubmenu from "@/components/Sidebar/SidebarSubmenu";
 export default {
   name: 'SidebarContainer',
-  components: {SidebarMenu},
-  props: {
-    msg: String
-  }
+  components: {SidebarSubmenu, SidebarLogo, SidebarMenu},
+  data() {
+    return {
+      menus: [
+        {
+          name: 'Inbox',
+          expand: true,
+          children: [
+            {
+              name: 'New',
+              icon: 'fa-inbox',
+              badge: 17
+            },
+            {
+              name: 'Assigned',
+              icon: 'fa-user-friends',
+              badge: 110
+            },
+            {
+              name: 'Closed',
+              icon: 'fa-check',
+              badge: null
+            },
+            {
+              name: 'Spam',
+              icon: 'fa-exclamation-circle',
+              badge: null
+            }
+          ]
+        },
+        {
+          name: 'Personal',
+          expand: false,
+          children: []
+        },
+        {
+          name: 'Teams',
+          expand: false,
+          children: []
+        },
+        {
+          name: 'Channels',
+          expand: true,
+          children: [
+            {
+              name: 'New',
+              icon: 'fa-inbox',
+              badge: 17
+            },
+            {
+              name: 'Assigned',
+              icon: 'fa-user-friends',
+              badge: 17
+            },
+            {
+              name: 'Closed',
+              icon: 'fa-check',
+              badge: null
+            },
+            {
+              name: 'Spam',
+              icon: 'fa-exclamation-circle',
+              badge: null
+            }
+          ]
+        },
+      ]
+    }
+  },
+  methods: {
+    toggleMenuExpand(id) {
+      this.menus[id].expand = !this.menus[id].expand;
+    }
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>
