@@ -13,13 +13,19 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import SidebarContainer from "@/components/Sidebar/SidebarContainer";
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
   components: {
     SidebarContainer,
     HelloWorld
-  }
+  },
+  computed: {
+    ...mapGetters({
+      sidebarExpand: 'sidebarExpand',
+    }),
+  },
 }
 </script>
 
