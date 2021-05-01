@@ -14,8 +14,8 @@ module.exports = {
         }
       },
       animation: {
-        slide: 'slide 0.8s ease-in',
-        backdrop: 'fadeInBackdrop 0.5s ease-in'
+        slide: 'slide 0.3s ease-in',
+        backdrop: 'fadeInBackdrop 0.1s ease-in'
       }
     },
   },
