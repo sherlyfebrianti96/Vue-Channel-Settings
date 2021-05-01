@@ -2,7 +2,10 @@
   <div class="relative top-0">
     <SidebarContainer />
     <div class="container mx-auto pt-10 pb-6">
-      <HelloWorld msg="Welcome to Your Vue.js App" class="text-center" />
+      <HelloWorld
+          msg="Welcome to Your Vue.js App"
+          class="text-center"
+      />
     </div>
   </div>
 </template>
