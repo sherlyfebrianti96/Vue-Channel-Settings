@@ -6,13 +6,13 @@ export const SidebarStore = {
     sidebarExpand: state => state.sidebarExpand,
   },
   mutations: {
-    toggleSidebarExpand(state) {
+    sidebarExpandToggle(state) {
       state.sidebarExpand = !state.sidebarExpand;
     }
   },
   actions: {
-    toggleSidebarExpand(context) {
-      context.commit('toggleSidebarExpand');
+    sidebarExpandToggle(context) {
+      context.commit('sidebarExpandToggle');
     }
   },
 }

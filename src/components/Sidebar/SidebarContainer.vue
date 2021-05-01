@@ -9,41 +9,21 @@
 
       <SidebarLogo />
 
-      <div class="menus-container mt-2">
-        <div
-          v-for="(menu, i) in menus"
-          :key="`menu-${i}`"
-          class="relative"
-        >
-          <SidebarMenu
-            :menu="menu"
-            @toggleMenuExpand="toggleMenuExpand(i)"
-          />
-          <SidebarAction
-            v-if="menu.actions"
-            :actions="menu.actions"
-            @channelSettings="openChannelSettings"
-            @channelManagement="openChannelManagement"
-          />
-          <SidebarSubmenu
-            v-if="menu.expand"
-            :submenus="menu.children"
-          />
-        </div>
-      </div>
+      <SidebarMenuWrapper
+        :menus="menus"
+        @toggleMenuExpand="toggleMenuExpand"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import SidebarMenu from "@/components/Sidebar/SidebarMenu";
 import SidebarLogo from "@/components/Sidebar/SidebarLogo";
-import SidebarSubmenu from "@/components/Sidebar/SidebarSubmenu";
 import SidebarToggle from "@/components/Sidebar/SidebarToggle";
-import SidebarAction from "@/components/Sidebar/SidebarAction";
+import SidebarMenuWrapper from "@/components/Sidebar/SidebarMenuWrapper";
 export default {
   name: 'SidebarContainer',
-  components: {SidebarAction, SidebarToggle, SidebarSubmenu, SidebarLogo, SidebarMenu},
+  components: {SidebarMenuWrapper, SidebarToggle, SidebarLogo},
   data() {
     return {
       menus: [
@@ -125,7 +105,7 @@ export default {
       this.menus[id].expand = !this.menus[id].expand;
     },
     async toggleSidebar() {
-      await this.$store.dispatch('toggleSidebarExpand');
+      await this.$store.dispatch('sidebarExpandToggle');
     },
     openChannelSettings() {
       console.log('open channel settings clicked');

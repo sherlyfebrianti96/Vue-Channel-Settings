@@ -12,7 +12,7 @@ export default {
   name: 'SidebarToggle',
   methods: {
     async toggle() {
-      await this.$store.dispatch('toggleSidebarExpand');
+      await this.$store.dispatch('sidebarExpandToggle');
     }
   },
 }
