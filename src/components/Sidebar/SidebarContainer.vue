@@ -3,14 +3,16 @@
     <div class="w-full h-full bg-gray-800 opacity-70">
     </div>
     <div class="fixed top-0 left-0 bg-white h-full w-10/12 md:w-6/12 lg:w-6/12 xl:w-2/12">
-      MENU WILL BE HERE
+      <SidebarMenu />
     </div>
   </div>
 </template>
 
 <script>
+import SidebarMenu from "@/components/Sidebar/SidebarMenu";
 export default {
   name: 'SidebarContainer',
+  components: {SidebarMenu},
   props: {
     msg: String
   }

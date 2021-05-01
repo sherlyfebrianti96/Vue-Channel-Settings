@@ -9,7 +9,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import SidebarContainer from "@/components/SidebarContainer";
+import SidebarContainer from "@/components/Sidebar/SidebarContainer";
 
 export default {
   name: 'App',
