@@ -9,6 +9,7 @@
       />
     </div>
   </div>
+  <!-- Modal -->
 </template>
 
 <script>

@@ -3,18 +3,18 @@
     class="relative cursor-pointer pt-2 pb-2 pl-10 pr-5 hover:bg-gray-100"
     @click="toggleMenuExpand"
   >
-        <span
-          v-if="menu.expand"
-          class="absolute left-5 h-full"
-        >
-          <i class="fas fa-chevron-down text-xs"/>
-        </span>
+    <span
+      v-if="menu.expand"
+      class="absolute left-5 h-full"
+    >
+      <i class="fas fa-chevron-down text-xs"/>
+    </span>
     <span
       v-else
       class="absolute left-5 h-full"
     >
-          <i class="fas fa-chevron-right text-xs"/>
-        </span>
+      <i class="fas fa-chevron-right text-xs"/>
+    </span>
     <strong>
       {{ menu.name }}
     </strong>

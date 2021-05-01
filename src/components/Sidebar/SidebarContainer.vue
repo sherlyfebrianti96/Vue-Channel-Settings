@@ -13,8 +13,18 @@
         <div
           v-for="(menu, i) in menus"
           :key="`menu-${i}`"
+          class="relative"
         >
-          <SidebarMenu :menu="menu" @toggleMenuExpand="toggleMenuExpand(i)" />
+          <SidebarMenu
+            :menu="menu"
+            @toggleMenuExpand="toggleMenuExpand(i)"
+          />
+          <SidebarAction
+            v-if="menu.actions"
+            :actions="menu.actions"
+            @channelSettings="openChannelSettings"
+            @channelManagement="openChannelManagement"
+          />
           <SidebarSubmenu
             v-if="menu.expand"
             :submenus="menu.children"
@@ -30,9 +40,10 @@ import SidebarMenu from "@/components/Sidebar/SidebarMenu";
 import SidebarLogo from "@/components/Sidebar/SidebarLogo";
 import SidebarSubmenu from "@/components/Sidebar/SidebarSubmenu";
 import SidebarToggle from "@/components/Sidebar/SidebarToggle";
+import SidebarAction from "@/components/Sidebar/SidebarAction";
 export default {
   name: 'SidebarContainer',
-  components: {SidebarToggle, SidebarSubmenu, SidebarLogo, SidebarMenu},
+  components: {SidebarAction, SidebarToggle, SidebarSubmenu, SidebarLogo, SidebarMenu},
   data() {
     return {
       menus: [
@@ -78,25 +89,33 @@ export default {
           children: [
             {
               name: 'New',
-              icon: 'fa-inbox',
-              badge: 17
+              icon: 'fa-inbox'
             },
             {
               name: 'Assigned',
-              icon: 'fa-user-friends',
-              badge: 17
+              icon: 'fa-user-friends'
             },
             {
               name: 'Closed',
-              icon: 'fa-check',
-              badge: null
+              icon: 'fa-check'
             },
             {
               name: 'Spam',
-              icon: 'fa-exclamation-circle',
-              badge: null
+              icon: 'fa-exclamation-circle'
             }
-          ]
+          ],
+          actions: [
+            {
+              name: 'Settings',
+              icon: 'fa-ellipsis-h',
+              emitter: 'channelSettings'
+            },
+            {
+              name: 'New Channel',
+              icon: 'fa-plus',
+              emitter: 'channelManagement'
+            }
+          ],
         },
       ]
     }
@@ -107,6 +126,12 @@ export default {
     },
     async toggleSidebar() {
       await this.$store.dispatch('toggleSidebarExpand');
+    },
+    openChannelSettings() {
+      console.log('open channel settings clicked');
+    },
+    openChannelManagement() {
+      console.log('open channel management clicked');
     }
   },
 }
