@@ -27,6 +27,8 @@
 import SidebarMenu from "@/components/Sidebar/SidebarMenu";
 import SidebarSubmenu from "@/components/Sidebar/SidebarSubmenu";
 import SidebarAction from "@/components/Sidebar/SidebarAction";
+import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
+
 export default {
   name: 'SidebarMenuWrapper',
   components: {SidebarAction, SidebarSubmenu, SidebarMenu},
@@ -110,14 +112,16 @@ export default {
     toggleMenuExpand(id) {
       this.menus[id].expand = !this.menus[id].expand;
     },
-    async toggleSidebar() {
-      await this.$store.dispatch('sidebarExpandToggle');
+    toggleSidebar() {
+      this.$store.dispatch('sidebarExpandToggle');
     },
     openChannelSettings() {
       console.log('open channel settings clicked');
+      this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.channel.settings);
     },
     openChannelManagement() {
       console.log('open channel management clicked');
+      this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.channel.management);
     }
   },
 }
