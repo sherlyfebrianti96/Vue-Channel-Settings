@@ -1,8 +1,9 @@
 <template>
   <div class="absolute top-0 w-full h-screen">
-    <div class="w-full h-full bg-gray-800 opacity-70">
-    </div>
-    <div class="fixed top-0 left-0 bg-white h-full w-10/12 md:w-6/12 lg:w-6/12 xl:w-2/12">
+    <div class="w-full h-full bg-gray-800 opacity-70 animate-backdrop" />
+    <div class="fixed top-0 bg-white h-full w-10/12 md:w-6/12 lg:w-6/12 xl:w-2/12 animate-slide">
+      <SidebarToggle class="right-2" />
+
       <SidebarLogo />
 
       <div class="menus-container mt-2">
@@ -25,9 +26,10 @@
 import SidebarMenu from "@/components/Sidebar/SidebarMenu";
 import SidebarLogo from "@/components/Sidebar/SidebarLogo";
 import SidebarSubmenu from "@/components/Sidebar/SidebarSubmenu";
+import SidebarToggle from "@/components/Sidebar/SidebarToggle";
 export default {
   name: 'SidebarContainer',
-  components: {SidebarSubmenu, SidebarLogo, SidebarMenu},
+  components: {SidebarToggle, SidebarSubmenu, SidebarLogo, SidebarMenu},
   data() {
     return {
       menus: [

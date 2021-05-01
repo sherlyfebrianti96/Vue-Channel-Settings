@@ -1,6 +1,7 @@
 <template>
   <div class="relative top-0">
-    <SidebarContainer />
+    <SidebarToggle class="left-4" />
+    <SidebarContainer v-if="sidebarExpand" />
     <div class="container mx-auto pt-10 pb-6">
       <HelloWorld
           msg="Welcome to Your Vue.js App"
@@ -14,10 +15,12 @@
 import HelloWorld from './components/HelloWorld.vue'
 import SidebarContainer from "@/components/Sidebar/SidebarContainer";
 import { mapGetters } from 'vuex';
+import SidebarToggle from "@/components/Sidebar/SidebarToggle";
 
 export default {
   name: 'App',
   components: {
+    SidebarToggle,
     SidebarContainer,
     HelloWorld
   },

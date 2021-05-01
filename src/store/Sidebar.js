@@ -1,6 +1,6 @@
 export const SidebarStore = {
   state: {
-    sidebarExpand: false,
+    sidebarExpand: true,
   },
   getters: {
     sidebarExpand: state => state.sidebarExpand,
