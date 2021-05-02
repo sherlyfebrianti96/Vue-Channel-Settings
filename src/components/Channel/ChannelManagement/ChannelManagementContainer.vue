@@ -43,7 +43,7 @@ export default {
   methods: {
     putChannel() {
       if (this.existingChannel(this.channelKeyword).length === 0) {
-        const newItem = CHANNEL_ITEM_DEFAULT;
+        const newItem = {...CHANNEL_ITEM_DEFAULT};
         newItem.name = this.channelKeyword;
         this.tmpChannelList.push(newItem);
         this.$store.dispatch('channelKeywordUpdate', '');
