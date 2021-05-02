@@ -1,14 +1,15 @@
 <template>
   <ModalWrapper header="Channels">
-    ChannelManagement
+    <ChannelManagement />
   </ModalWrapper>
 </template>
 
 <script>
 import ModalWrapper from "@/components/Modal/ModalWrapper";
+import ChannelManagement from "@/components/Channel/ChannelManagement";
 export default {
   name: 'ChannelAction',
-  components: {ModalWrapper},
+  components: {ChannelManagement, ModalWrapper},
 }
 </script>
 
