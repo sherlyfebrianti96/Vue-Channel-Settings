@@ -3,6 +3,7 @@
     :name="name"
     type="button"
     class="px-5 py-1 rounded-full text-sm border border-gray-300 hover:bg-gray-100"
+    @click="handleClick"
   >
     <slot />
   </button>
@@ -15,6 +16,11 @@ export default {
     name: {
       type: String,
       default: ''
+    }
+  },
+  methods: {
+    handleClick(e) {
+      this.$emit('click', e);
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <BaseInput
     :placeholder="title"
-    :value="formControl"
+    :form-control="formControl"
     @keyup="handleKeyup"
   >
     <i

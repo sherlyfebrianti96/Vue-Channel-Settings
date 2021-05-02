@@ -33,7 +33,7 @@ export default {
     };
   },
   created() {
-    this.tmpChannelList = this.channelList;
+    this.tmpChannelList = [...this.channelList];
     this.handleChannelFilter();
   },
   computed: {
@@ -48,8 +48,8 @@ export default {
         const newItem = {...CHANNEL_ITEM_DEFAULT};
         newItem.name = this.channelKeyword;
         this.tmpChannelList.push(newItem);
-        this.$store.dispatch('channelKeywordUpdate', '');
-        this.syncLatestData();
+        this.resetChannelKeyword();
+        this.handleChannelFilter();
       }
     },
     existingChannel(item) {
@@ -61,7 +61,7 @@ export default {
       if (this.channelKeyword) {
         this.filteredChannel = this.searchChannelList(this.tmpChannelList, this.channelKeyword);
       } else {
-        this.filteredChannel = this.tmpChannelList;
+        this.filteredChannel = [...this.tmpChannelList];
       }
     },
     handleChannelSearch(e) {
@@ -75,12 +75,8 @@ export default {
       const deleteIndex = this.findChannelIndex(this.tmpChannelList, itemToDelete.name);
       this.tmpChannelList.splice(deleteIndex, 1);
       this.handleChannelFilter();
-      this.syncLatestData();
     },
-    syncLatestData() {
-      this.$emit('syncChannelList', this.tmpChannelList);
-    }
-  }
+  },
 }
 </script>
 

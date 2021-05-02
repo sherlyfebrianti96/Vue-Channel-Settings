@@ -26,6 +26,9 @@ const ChannelMixin = {
     },
     isSimilarChannel(channel, keyword) {
       return (channel.name.toLowerCase().includes(keyword.toLowerCase()));
+    },
+    resetChannelKeyword() {
+      this.$store.dispatch('channelKeywordUpdate', '');
     }
   },
 };
