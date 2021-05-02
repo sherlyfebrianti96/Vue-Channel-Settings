@@ -12,6 +12,9 @@ const ChannelMixin = {
           return '';
       }
     },
+    searchChannelList(channelList = [], keyword = '') {
+      return channelList.filter(channel => this.isSimilarChannel(channel, keyword));
+    },
     filterChannelList(channelList = [], keyword = '') {
       return channelList.filter(channel => this.isExactChannel(channel, keyword));
     },
@@ -20,6 +23,9 @@ const ChannelMixin = {
     },
     isExactChannel(channel, keyword) {
       return (channel.name.toLowerCase() === keyword.toLowerCase());
+    },
+    isSimilarChannel(channel, keyword) {
+      return (channel.name.toLowerCase().includes(keyword.toLowerCase()));
     }
   },
 };

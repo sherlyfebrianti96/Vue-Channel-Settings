@@ -59,7 +59,7 @@ export default {
     },
     handleChannelFilter() {
       if (this.channelKeyword) {
-        this.filteredChannel = this.filterChannelList(this.tmpChannelList, this.channelKeyword);
+        this.filteredChannel = this.searchChannelList(this.tmpChannelList, this.channelKeyword);
       } else {
         this.filteredChannel = this.tmpChannelList;
       }
