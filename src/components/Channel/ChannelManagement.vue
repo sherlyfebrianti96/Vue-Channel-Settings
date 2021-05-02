@@ -3,13 +3,13 @@
     <div class="mb-3 relative">
       <input
         type="text"
-        class="border-solid border border-gray-300 rounded-md w-full py-2 pl-7 pr-10"
+        class="border-solid border border-gray-300 rounded-md w-full py-2 pl-7 pr-16"
         placeholder="Add new channel"
       />
       <i
         class="fas fa-search absolute top-3 left-2 text-gray-300"
       />
-      <div class="absolute top-3 right-2 text-gray-400 text-xs">
+      <div class="absolute top-3 right-5 text-gray-400 text-xs align-middle">
         Enter
       </div>
     </div>
