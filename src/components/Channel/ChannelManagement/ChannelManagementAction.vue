@@ -8,11 +8,11 @@
 
 <script>
 import ModalAction from "@/components/Modal/ModalAction";
-import sidebarMixin from "@/mixins/Sidebar";
+import SidebarMixin from "@/mixins/Sidebar";
 
 export default {
   name: 'ChannelManagementAction',
-  mixins: [sidebarMixin],
+  mixins: [SidebarMixin],
   components: {ModalAction},
   props: {
     channelList: {

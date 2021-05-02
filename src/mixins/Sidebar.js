@@ -1,6 +1,6 @@
 import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
 
-const sidebarMixin = {
+const SidebarMixin = {
   methods: {
     sidebarOpenMainFeature() {
       this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.menu);
@@ -8,4 +8,4 @@ const sidebarMixin = {
   }
 };
 
-export default sidebarMixin;
+export default SidebarMixin;

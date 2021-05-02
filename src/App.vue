@@ -24,11 +24,11 @@ import SidebarToggle from "@/components/Sidebar/SidebarToggle";
 import ChannelAction from "@/components/Channel/ChannelAction";
 import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
 import {DATA_CHANNEL_LIST} from "@/data/ChannelList";
-import sidebarMixin from "@/mixins/Sidebar";
+import SidebarMixin from "@/mixins/Sidebar";
 
 export default {
   name: 'App',
-  mixins: [sidebarMixin],
+  mixins: [SidebarMixin],
   components: {
     ChannelAction,
     SidebarToggle,
