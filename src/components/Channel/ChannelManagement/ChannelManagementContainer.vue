@@ -79,7 +79,17 @@ export default {
       this.handleChannelFilter();
     },
     handleDragAndDrop(result) {
-      this.tmpChannelList = this.applyDragAndDrop(this.tmpChannelList, result);
+      /* Get current Drag and Drop Index */
+      const originData = this.filteredChannel[result.removedIndex];
+      const destinationData = this.filteredChannel[result.addedIndex];
+
+      /* Get the real Index */
+      const realOriginIndex = this.findChannelIndex(this.tmpChannelList, originData.name);
+      const realDestinationIndex = this.findChannelIndex(this.tmpChannelList, destinationData.name);
+
+      const dragData = { removedIndex: realOriginIndex, addedIndex: realDestinationIndex }
+
+      this.tmpChannelList = this.applyDragAndDrop(this.tmpChannelList, dragData);
       this.handleChannelFilter();
     }
   },
