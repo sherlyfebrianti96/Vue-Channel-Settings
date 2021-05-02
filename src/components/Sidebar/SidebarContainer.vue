@@ -11,12 +11,23 @@
 
       <SidebarMenuWrapper v-if="mainFeature" />
 
+      <div
+        v-else
+        class="p-3 cursor-pointer text-green-600 bg-gray-200"
+        @click="openMainFeature"
+      >
+        <i class="fas fa-arrow-left text-xs align-middle" />
+        <span class="ml-2">
+          Back to Main Menu
+        </span>
+      </div>
+
       <div v-if="channelSettingsFeature">
         sidebarFeature.channel.settings
       </div>
 
       <div v-if="channelManagementFeature">
-        sidebarFeature.channel.management
+        <ChannelManagement />
       </div>
     </div>
   </div>
@@ -28,10 +39,11 @@ import SidebarToggle from "@/components/Sidebar/SidebarToggle";
 import SidebarMenuWrapper from "@/components/Sidebar/SidebarMenuWrapper";
 import {mapGetters} from "vuex";
 import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
+import ChannelManagement from "@/components/Channel/ChannelManagement";
 
 export default {
   name: 'SidebarContainer',
-  components: {SidebarMenuWrapper, SidebarToggle, SidebarLogo},
+  components: {ChannelManagement, SidebarMenuWrapper, SidebarToggle, SidebarLogo},
   computed: {
     ...mapGetters({
       sidebarActiveFeature: 'sidebarActiveFeature',
