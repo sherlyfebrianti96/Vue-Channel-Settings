@@ -29,13 +29,13 @@ import SidebarSubmenu from "@/components/Sidebar/SidebarSubmenu";
 import SidebarAction from "@/components/Sidebar/SidebarAction";
 import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
 import {mapGetters} from "vuex";
-import channelMixin from "@/mixins/Channel";
+import ChannelMixin from "@/mixins/Channel";
 import {DATA_MENU_LIST} from "@/data/MenuList";
 
 export default {
   name: 'SidebarMenuWrapper',
   components: {SidebarAction, SidebarSubmenu, SidebarMenu},
-  mixins: [channelMixin],
+  mixins: [ChannelMixin],
   data() {
     return {
       menus: DATA_MENU_LIST,

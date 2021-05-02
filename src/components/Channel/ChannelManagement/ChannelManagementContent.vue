@@ -31,11 +31,11 @@
 </template>
 
 <script>
-import channelMixin from "@/mixins/Channel";
+import ChannelMixin from "@/mixins/Channel";
 
 export default {
   name: 'ChannelManagementContent',
-  mixins: [channelMixin],
+  mixins: [ChannelMixin],
   props: {
     channelList: {
       type: Array,

@@ -1,4 +1,4 @@
-const channelMixin = {
+const ChannelMixin = {
   methods: {
     getChannelIcon(channelType) {
       switch (channelType) {
@@ -11,8 +11,17 @@ const channelMixin = {
         default:
           return '';
       }
+    },
+    filterChannelList(channelList = [], keyword = '') {
+      return channelList.filter(channel => this.isExactChannel(channel, keyword));
+    },
+    findChannelIndex(channelList = [], keyword = '') {
+      return channelList.findIndex(channel => this.isExactChannel(channel, keyword));
+    },
+    isExactChannel(channel, keyword) {
+      return (channel.name.toLowerCase() === keyword.toLowerCase());
     }
   },
 };
 
-export default channelMixin;
+export default ChannelMixin;

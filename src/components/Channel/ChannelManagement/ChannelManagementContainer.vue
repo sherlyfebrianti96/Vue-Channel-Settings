@@ -20,10 +20,12 @@ import {mapGetters} from "vuex";
 import {CHANNEL_ITEM_DEFAULT} from "@/enum/ChannelItemDefault";
 import ChannelManagementAction from "@/components/Channel/ChannelManagement/ChannelManagementAction";
 import ChannelManagementContent from "@/components/Channel/ChannelManagement/ChannelManagementContent";
+import ChannelMixin from "@/mixins/Channel";
 
 export default {
   name: 'ChannelManagementContainer',
   components: {ChannelManagementContent, ChannelManagementAction, ChannelSearch},
+  mixins: [ChannelMixin],
   data() {
     return {
       filteredChannel: [],
@@ -52,12 +54,12 @@ export default {
     },
     existingChannel(item) {
       const itemIsNotEmpty = item.length > 0;
-      const itemHasBeenExist = this.tmpChannelList.filter(channel => (channel.name.toLowerCase() === item.toLowerCase()));
+      const itemHasBeenExist = this.filterChannelList(this.tmpChannelList, item);
       return itemIsNotEmpty && itemHasBeenExist;
     },
     handleChannelFilter() {
       if (this.channelKeyword) {
-        this.filteredChannel = this.tmpChannelList.filter(channel => channel.name.toLowerCase().includes(this.channelKeyword.toLowerCase()));
+        this.filteredChannel = this.filterChannelList(this.tmpChannelList, this.channelKeyword);
       } else {
         this.filteredChannel = this.tmpChannelList;
       }
@@ -70,11 +72,7 @@ export default {
     },
     removeChannel(index) {
       const itemToDelete = this.filteredChannel[index];
-      const deleteIndex = this.tmpChannelList.findIndex(item => {
-        if (item.name.toLowerCase() === itemToDelete.name.toLowerCase()) {
-          return true;
-        }
-      });
+      const deleteIndex = this.findChannelIndex(this.tmpChannelList, itemToDelete.name);
       this.tmpChannelList.splice(deleteIndex, 1);
       this.handleChannelFilter();
       this.syncLatestData();
