@@ -13,6 +13,7 @@
     </div>
   </div>
   <!-- Modal -->
+  <ChannelAction v-if="!isMainFeatureActive" />
 </template>
 
 <script>
@@ -20,10 +21,13 @@ import HelloWorld from './components/HelloWorld.vue'
 import SidebarContainer from "@/components/Sidebar/SidebarContainer";
 import { mapGetters } from 'vuex';
 import SidebarToggle from "@/components/Sidebar/SidebarToggle";
+import ChannelAction from "@/components/Channel/ChannelAction";
+import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
 
 export default {
   name: 'App',
   components: {
+    ChannelAction,
     SidebarToggle,
     SidebarContainer,
     HelloWorld
@@ -31,26 +35,28 @@ export default {
   computed: {
     ...mapGetters({
       sidebarExpand: 'sidebarExpand',
+      sidebarActiveFeature: 'sidebarActiveFeature',
     }),
     containerWidth() {
       if (this.sidebarExpand) {
         return 'md:w-6/12 lg:w-6/12 xl:w-10/12'
       }
       return 'w-full max-w-full';
+    },
+    isMainFeatureActive() {
+      return this.sidebarActiveFeature === SIDEBAR_FEATURE.menu;
+    }
+  },
+  created() {
+    this.openMainFeature();
+  },
+  methods: {
+    openMainFeature() {
+      this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.menu);
     }
   },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
-.sidebar {
-  width: 40%;
-}
 </style>
