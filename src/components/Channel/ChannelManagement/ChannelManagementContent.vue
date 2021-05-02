@@ -1,6 +1,9 @@
 <template>
-  <div class="my-3 channel-list overflow-y-scroll">
-    <div
+  <Container
+    class="my-3 channel-list overflow-y-scroll"
+    @drop="handleOnDrop"
+  >
+    <Draggable
       v-for="(channel, i) in channelList"
       :key="`channel-${i}`"
       class="py-3 align-middle relative hover:bg-gray-100"
@@ -20,21 +23,23 @@
       >
         Remove
       </div>
-    </div>
+    </Draggable>
     <div
       v-if="channelList.length <= 0"
       class="pt-3 px-3 align-middle relative hover:bg-gray-100"
     >
       No channel available.
     </div>
-  </div>
+  </Container>
 </template>
 
 <script>
 import ChannelMixin from "@/mixins/Channel";
+import { Container, Draggable } from "vue-smooth-dnd";
 
 export default {
   name: 'ChannelManagementContent',
+  components: { Container, Draggable },
   mixins: [ChannelMixin],
   props: {
     channelList: {
@@ -47,6 +52,9 @@ export default {
   methods: {
     removeChannel(index) {
       this.$emit('removeChannel', index);
+    },
+    handleOnDrop(dropResult) {
+      this.$emit('dragAndDropResult', dropResult);
     }
   }
 }

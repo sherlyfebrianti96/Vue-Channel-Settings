@@ -8,6 +8,7 @@
     <ChannelManagementContent
       :channel-list="filteredChannel"
       @removeChannel="removeChannel"
+      @dragAndDropResult="handleDragAndDrop"
     />
 
     <ChannelManagementAction :channel-list="tmpChannelList" />
@@ -21,11 +22,12 @@ import {CHANNEL_ITEM_DEFAULT} from "@/enum/ChannelItemDefault";
 import ChannelManagementAction from "@/components/Channel/ChannelManagement/ChannelManagementAction";
 import ChannelManagementContent from "@/components/Channel/ChannelManagement/ChannelManagementContent";
 import ChannelMixin from "@/mixins/Channel";
+import DragAndDropMixin from "@/mixins/DragAndDrop";
 
 export default {
   name: 'ChannelManagementContainer',
   components: {ChannelManagementContent, ChannelManagementAction, ChannelSearch},
-  mixins: [ChannelMixin],
+  mixins: [ChannelMixin, DragAndDropMixin],
   data() {
     return {
       filteredChannel: [],
@@ -76,6 +78,10 @@ export default {
       this.tmpChannelList.splice(deleteIndex, 1);
       this.handleChannelFilter();
     },
+    handleDragAndDrop(result) {
+      this.tmpChannelList = this.applyDragAndDrop(this.tmpChannelList, result);
+      this.handleChannelFilter();
+    }
   },
 }
 </script>
