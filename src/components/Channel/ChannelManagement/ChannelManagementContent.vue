@@ -7,7 +7,7 @@
     >
       <i class="fas fa-grip-vertical mx-2 text-gray-300 inline-flex" />
       <div class="p-2 ml-1 mr-2 bg-gray-200 rounded-sm inline-flex">
-        <i class="fab fa-whatsapp" />
+        <i :class="getChannelIcon(channel.type)" />
       </div>
       <div class="channel-name inline-flex">
           <span class="overflow-ellipsis whitespace-nowrap overflow-hidden">
@@ -45,6 +45,18 @@ export default {
     removeChannel(index) {
       this.$emit('removeChannel', index);
     },
+    getChannelIcon(channelType) {
+      switch (channelType) {
+        case 'whatsapp':
+          return 'fab fa-whatsapp'
+        case 'email':
+          return 'far fa-envelope'
+        case 'phone':
+          return 'fas fa-phone'
+        default:
+          return '';
+      }
+    }
   }
 }
 </script>
