@@ -3,11 +3,11 @@ const ChannelMixin = {
     getChannelIcon(channelType) {
       switch (channelType) {
         case 'whatsapp':
-          return 'fab fa-whatsapp'
+          return ['fab', 'whatsapp'];
         case 'email':
-          return 'far fa-envelope'
+          return 'envelope';
         case 'phone':
-          return 'fas fa-phone'
+          return 'phone';
         default:
           return '';
       }
