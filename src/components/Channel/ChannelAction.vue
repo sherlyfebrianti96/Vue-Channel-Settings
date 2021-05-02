@@ -6,7 +6,7 @@
 
 <script>
 import ModalWrapper from "@/components/Modal/ModalWrapper";
-import ChannelManagement from "@/components/Channel/ChannelManagement";
+import ChannelManagement from "@/components/Channel/ChannelManagement/ChannelManagementContainer";
 export default {
   name: 'ChannelAction',
   components: {ChannelManagement, ModalWrapper},

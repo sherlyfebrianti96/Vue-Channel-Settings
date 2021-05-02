@@ -33,6 +33,8 @@
         No channel available.
       </div>
     </div>
+
+    <ChannelManagementAction :channel-list="tmpChannelList" />
   </div>
 </template>
 
@@ -40,16 +42,19 @@
 import ChannelSearch from "@/components/Channel/ChannelSearch";
 import {mapGetters} from "vuex";
 import {CHANNEL_ITEM_DEFAULT} from "@/enum/ChannelItemDefault";
+import ChannelManagementAction from "@/components/Channel/ChannelManagement/ChannelManagementAction";
 
 export default {
-  name: 'ChannelManagement',
-  components: {ChannelSearch},
+  name: 'ChannelManagementContainer',
+  components: {ChannelManagementAction, ChannelSearch},
   data() {
     return {
       filteredChannel: [],
-    }
+      tmpChannelList: [],
+    };
   },
   created() {
+    this.tmpChannelList = this.channelList;
     this.handleChannelFilter();
   },
   computed: {
@@ -63,22 +68,21 @@ export default {
       if (this.existingChannel(this.channelKeyword).length === 0) {
         const newItem = CHANNEL_ITEM_DEFAULT;
         newItem.name = this.channelKeyword;
-        const newChannelList = this.channelList;
-        newChannelList.push(newItem);
-        this.$store.dispatch('channelListUpdate', newChannelList);
+        this.tmpChannelList.push(newItem);
         this.$store.dispatch('channelKeywordUpdate', '');
+        this.syncLatestData();
       }
     },
     existingChannel(item) {
       const itemIsNotEmpty = item.length > 0;
-      const itemHasBeenExist = this.channelList.filter(channel => (channel.name.toLowerCase() === item.toLowerCase()));
+      const itemHasBeenExist = this.tmpChannelList.filter(channel => (channel.name.toLowerCase() === item.toLowerCase()));
       return itemIsNotEmpty && itemHasBeenExist;
     },
     handleChannelFilter() {
       if (this.channelKeyword) {
-        this.filteredChannel = this.channelList.filter(channel => channel.name.toLowerCase().includes(this.channelKeyword.toLowerCase()));
+        this.filteredChannel = this.tmpChannelList.filter(channel => channel.name.toLowerCase().includes(this.channelKeyword.toLowerCase()));
       } else {
-        this.filteredChannel = this.channelList;
+        this.filteredChannel = this.tmpChannelList;
       }
     },
     handleChannelSearch(e) {
@@ -89,16 +93,18 @@ export default {
     },
     removeChannel(index) {
       const itemToDelete = this.filteredChannel[index];
-      const deleteIndex = this.channelList.findIndex(item => {
+      const deleteIndex = this.tmpChannelList.findIndex(item => {
         if (item.name.toLowerCase() === itemToDelete.name.toLowerCase()) {
           return true;
         }
       });
-      const channelList = this.channelList;
-      channelList.splice(deleteIndex, 1);
-      this.$store.dispatch('channelListUpdate', channelList);
+      this.tmpChannelList.splice(deleteIndex, 1);
       this.handleChannelFilter();
+      this.syncLatestData();
     },
+    syncLatestData() {
+      this.$emit('syncChannelList', this.tmpChannelList);
+    }
   }
 }
 </script>
