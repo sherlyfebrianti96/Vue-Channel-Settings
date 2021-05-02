@@ -7,10 +7,7 @@
       class="p-1 ml-2 hover:text-gray-800 z-10"
       @click="toggleMenuExpand(action.emitter)"
     >
-      <i
-        class="fas"
-        :class="action.icon"
-      />
+      <font-awesome-icon :icon="action.icon" />
     </span>
   </div>
 </template>

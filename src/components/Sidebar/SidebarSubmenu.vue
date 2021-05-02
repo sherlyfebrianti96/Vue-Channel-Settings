@@ -1,8 +1,8 @@
 <template>
   <div class="relative cursor-pointer pl-10 pr-5 pt-1 pb-1 text-gray-500 hover:bg-gray-100">
-    <i
-      class="fas text-sm"
-      :class="submenu.icon"
+    <font-awesome-icon
+      class="text-sm"
+      :icon="submenu.icon"
     />
     <span class="ml-3">
       {{ submenu.name }}

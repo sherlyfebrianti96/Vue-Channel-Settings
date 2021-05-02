@@ -3,7 +3,10 @@
     class="absolute top-4 cursor-pointer p-2"
     @click="toggle"
   >
-    <i class="fas fa-bars text-2xl text-gray-500" />
+    <font-awesome-icon
+      icon="bars"
+      class="text-2xl text-gray-500"
+    />
   </div>
 </template>
 

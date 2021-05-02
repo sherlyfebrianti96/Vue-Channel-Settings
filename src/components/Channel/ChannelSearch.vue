@@ -4,8 +4,9 @@
     :form-control="formControl"
     @keyup="handleKeyup"
   >
-    <i
-      class="fas fa-search absolute top-3 left-2 text-gray-300"
+    <font-awesome-icon
+      icon="search"
+      class="absolute top-3 left-2 text-gray-300"
     />
     <div class="absolute top-3 right-5 text-gray-400 text-xs align-middle">
       Enter

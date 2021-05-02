@@ -7,13 +7,19 @@
       v-if="menu.expand"
       class="absolute left-5 h-full"
     >
-      <i class="fas fa-chevron-down text-xs"/>
+      <font-awesome-icon
+        icon="chevron-down"
+        class="text-xs"
+      />
     </span>
     <span
       v-else
       class="absolute left-5 h-full"
     >
-      <i class="fas fa-chevron-right text-xs"/>
+      <font-awesome-icon
+        icon="chevron-right"
+        class="text-xs"
+      />
     </span>
     <strong>
       {{ menu.name }}

@@ -5,22 +5,22 @@ export const DATA_MENU_LIST = [
     children: [
       {
         name: 'New',
-        icon: 'fa-inbox',
+        icon: 'inbox',
         badge: 17
       },
       {
         name: 'Assigned',
-        icon: 'fa-user-friends',
+        icon: 'user-friends',
         badge: 110
       },
       {
         name: 'Closed',
-        icon: 'fa-check',
+        icon: 'check',
         badge: null
       },
       {
         name: 'Spam',
-        icon: 'fa-exclamation-circle',
+        icon: 'exclamation-circle',
         badge: null
       }
     ]
@@ -38,33 +38,16 @@ export const DATA_MENU_LIST = [
   {
     name: 'Channels',
     expand: true,
-    children: [
-      {
-        name: 'New',
-        icon: 'fa-inbox'
-      },
-      {
-        name: 'Assigned',
-        icon: 'fa-user-friends'
-      },
-      {
-        name: 'Closed',
-        icon: 'fa-check'
-      },
-      {
-        name: 'Spam',
-        icon: 'fa-exclamation-circle'
-      }
-    ],
+    children: [],
     actions: [
       {
         name: 'Settings',
-        icon: 'fa-ellipsis-h',
+        icon: 'ellipsis-h',
         emitter: 'channelSettings'
       },
       {
         name: 'New Channel',
-        icon: 'fa-plus',
+        icon: 'plus',
         emitter: 'channelManagement'
       }
     ],
