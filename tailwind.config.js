@@ -5,8 +5,7 @@ module.exports = {
     extend: {
       keyframes: {
         slide: {
-          '0%': { left: '-100%' },
-          '100%': { left: '0' }
+          '0%': { width: '0' }
         },
         fadeInBackdrop: {
           '0%': { opacity: '0' },
@@ -15,7 +14,6 @@ module.exports = {
       },
       animation: {
         slide: 'slide 0.3s ease-in',
-        backdrop: 'fadeInBackdrop 0.1s ease-in'
       }
     },
   },

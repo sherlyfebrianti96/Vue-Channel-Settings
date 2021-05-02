@@ -1,8 +1,11 @@
 <template>
   <div class="relative top-0">
-    <SidebarToggle class="left-4" />
     <SidebarContainer v-if="sidebarExpand" />
-    <div class="container mx-auto pt-10 pb-6">
+    <div
+      class="container mx-auto pt-10 pb-6 inline-block relative align-top"
+      :class="containerWidth"
+    >
+      <SidebarToggle class="left-4" />
       <HelloWorld
           msg="Welcome to Your Vue.js App"
           class="text-center"
@@ -29,6 +32,12 @@ export default {
     ...mapGetters({
       sidebarExpand: 'sidebarExpand',
     }),
+    containerWidth() {
+      if (this.sidebarExpand) {
+        return 'md:w-6/12 lg:w-6/12 xl:w-10/12'
+      }
+      return 'w-full max-w-full';
+    }
   },
 }
 </script>
