@@ -1,21 +1,12 @@
 <template>
   <div class="p-4 border-solid border border-gray-300 rounded-md">
-    <div class="mb-3 relative">
-      <input
-        type="text"
-        class="border-solid border border-gray-300 rounded-md w-full py-2 pl-7 pr-16"
-        placeholder="Add new channel"
-      />
-      <i
-        class="fas fa-search absolute top-3 left-2 text-gray-300"
-      />
-      <div class="absolute top-3 right-5 text-gray-400 text-xs align-middle">
-        Enter
-      </div>
-    </div>
-    <div class="my-3">
+    <ChannelSearch
+      title="Add new channel"
+      @keyup="handleChannelSearch"
+    />
+    <div class="my-3 channel-list overflow-y-scroll">
       <div
-        v-for="(channel, i) in channels"
+        v-for="(channel, i) in filteredChannel"
         :key="`channel-${i}`"
         class="py-3 align-middle relative hover:bg-gray-100"
       >
@@ -28,52 +19,86 @@
             {{ channel.name }}
           </span>
         </div>
-        <div class="text-xs text-gray-400 p-1 absolute right-2 top-4 hover:text-red-600 cursor-pointer">
+        <div
+          class="text-xs text-gray-400 p-1 absolute right-2 top-4 hover:text-red-600 cursor-pointer"
+          @click="removeChannel(i)"
+        >
           Remove
         </div>
+      </div>
+      <div
+        v-if="filteredChannel.length <= 0"
+        class="pt-3 px-3 align-middle relative hover:bg-gray-100"
+      >
+        No channel available.
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ChannelSearch from "@/components/Channel/ChannelSearch";
+import {mapGetters} from "vuex";
+import {CHANNEL_ITEM_DEFAULT} from "@/enum/ChannelItemDefault";
+
 export default {
   name: 'ChannelManagement',
+  components: {ChannelSearch},
   data() {
     return {
-      channels: [
-        {
-          name: 'Team@trengo.com',
-          type: 'phone',
-          active: true,
-          notification: false,
-        },
-        {
-          name: 'Call Center',
-          type: 'phone',
-          active: true,
-          notification: false,
-        },
-        {
-          name: 'Whatsapp Business',
-          type: 'whatsapp',
-          active: true,
-          notification: false,
-        },
-        {
-          name: '(test) development California',
-          type: 'email',
-          active: true,
-          notification: false,
-        },
-        {
-          name: 'Whatsapp Business Iceland',
-          type: 'whatsapp',
-          active: true,
-          notification: false,
+      filteredChannel: [],
+    }
+  },
+  created() {
+    this.handleChannelFilter();
+  },
+  computed: {
+    ...mapGetters({
+      channelList: 'channelList',
+      channelKeyword: 'channelKeyword',
+    }),
+  },
+  methods: {
+    putChannel() {
+      if (this.existingChannel(this.channelKeyword).length === 0) {
+        const newItem = CHANNEL_ITEM_DEFAULT;
+        newItem.name = this.channelKeyword;
+        const newChannelList = this.channelList;
+        newChannelList.push(newItem);
+        this.$store.dispatch('channelListUpdate', newChannelList);
+        this.$store.dispatch('channelKeywordUpdate', '');
+      }
+    },
+    existingChannel(item) {
+      const itemIsNotEmpty = item.length > 0;
+      const itemHasBeenExist = this.channelList.filter(channel => (channel.name.toLowerCase() === item.toLowerCase()));
+      return itemIsNotEmpty && itemHasBeenExist;
+    },
+    handleChannelFilter() {
+      if (this.channelKeyword) {
+        this.filteredChannel = this.channelList.filter(channel => channel.name.toLowerCase().includes(this.channelKeyword.toLowerCase()));
+      } else {
+        this.filteredChannel = this.channelList;
+      }
+    },
+    handleChannelSearch(e) {
+      this.handleChannelFilter();
+      if (e.key === 'Enter') {
+        this.putChannel();
+      }
+    },
+    removeChannel(index) {
+      const itemToDelete = this.filteredChannel[index];
+      const deleteIndex = this.channelList.findIndex(item => {
+        if (item.name.toLowerCase() === itemToDelete.name.toLowerCase()) {
+          return true;
         }
-      ],
-    };
+      });
+      const channelList = this.channelList;
+      channelList.splice(deleteIndex, 1);
+      this.$store.dispatch('channelListUpdate', channelList);
+      this.handleChannelFilter();
+    },
   }
 }
 </script>
@@ -82,5 +107,8 @@ export default {
 <style scoped>
 .channel-name {
   max-width: calc(100% - 140px);
+}
+.channel-list {
+  max-height: 50vh;
 }
 </style>

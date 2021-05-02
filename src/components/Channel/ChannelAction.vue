@@ -1,5 +1,5 @@
 <template>
-  <ModalWrapper header="Channels">
+  <ModalWrapper header="Channels" key="channel">
     <ChannelManagement />
   </ModalWrapper>
 </template>

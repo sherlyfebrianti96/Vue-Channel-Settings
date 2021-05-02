@@ -1,0 +1,57 @@
+<template>
+  <BaseInput
+    :placeholder="title"
+    :value="channelKeyword"
+    @change="inputChange"
+    @keyup="handleKeyup"
+  >
+    <i
+      class="fas fa-search absolute top-3 left-2 text-gray-300"
+    />
+    <div class="absolute top-3 right-5 text-gray-400 text-xs align-middle">
+      Enter
+    </div>
+  </BaseInput>
+</template>
+
+<script>
+import BaseInput from "@/components/Base/BaseInput";
+import {mapGetters} from "vuex";
+
+export default {
+  name: 'ChannelSearch',
+  components: {BaseInput},
+  props: {
+    title: {
+      type: String,
+      required: true,
+    }
+  },
+  data() {
+    return {
+      searchInput: '',
+    }
+  },
+  computed: {
+    ...mapGetters({
+      channelKeyword: 'channelKeyword',
+    }),
+  },
+  methods: {
+    inputChange(e) {
+      this.$emit('change', e);
+    },
+    handleKeyup(e) {
+      this.$store.dispatch('channelKeywordUpdate', e.target.value);
+      this.$emit('keyup', e);
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.channel-name {
+  max-width: calc(100% - 140px);
+}
+</style>
