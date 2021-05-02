@@ -23,6 +23,7 @@ import { mapGetters } from 'vuex';
 import SidebarToggle from "@/components/Sidebar/SidebarToggle";
 import ChannelAction from "@/components/Channel/ChannelAction";
 import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
+import {DATA_CHANNEL_LIST} from "@/data/ChannelList";
 
 export default {
   name: 'App',
@@ -55,44 +56,10 @@ export default {
   methods: {
     openMainFeature() {
       this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.menu);
-      // this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.channel.management);
     },
     setDefaultChannelList() {
       if (this.channelList.length <= 0) {
-        const channels = [
-          {
-            name: 'Team@trengo.com',
-            type: 'phone',
-            active: true,
-            notification: false,
-          },
-          {
-            name: 'Call Center',
-            type: 'phone',
-            active: true,
-            notification: false,
-          },
-          {
-            name: 'Whatsapp Business',
-            type: 'whatsapp',
-            active: true,
-            notification: false,
-          },
-          {
-            name: '(test) development California',
-            type: 'email',
-            active: true,
-            notification: false,
-          },
-          {
-            name: 'Whatsapp Business Iceland',
-            type: 'whatsapp',
-            active: true,
-            notification: false,
-          }
-        ];
-
-        this.$store.dispatch('channelListUpdate', channels);
+        this.$store.dispatch('channelListUpdate', DATA_CHANNEL_LIST);
       }
     }
   },

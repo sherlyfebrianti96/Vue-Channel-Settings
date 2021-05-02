@@ -28,10 +28,13 @@ import SidebarMenu from "@/components/Sidebar/SidebarMenu";
 import SidebarSubmenu from "@/components/Sidebar/SidebarSubmenu";
 import SidebarAction from "@/components/Sidebar/SidebarAction";
 import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
+import {mapGetters} from "vuex";
+import channelMixin from "@/mixins/Channel";
 
 export default {
   name: 'SidebarMenuWrapper',
   components: {SidebarAction, SidebarSubmenu, SidebarMenu},
+  mixins: [channelMixin],
   data() {
     return {
       menus: [
@@ -105,23 +108,39 @@ export default {
             }
           ],
         },
-      ]
+      ],
+      channelFeatureIndex: 0
+    };
+  },
+  computed: {
+    ...mapGetters({
+      channelList: 'channelList',
+    }),
+  },
+  created() {
+    this.channelFeatureIndex = this.menus.findIndex(menu => (menu.name === 'Channels'));
+    this.syncChannelList();
+  },
+  watch: {
+    channelList() {
+      this.syncChannelList();
     }
   },
   methods: {
     toggleMenuExpand(id) {
       this.menus[id].expand = !this.menus[id].expand;
     },
-    toggleSidebar() {
-      this.$store.dispatch('sidebarExpandToggle');
-    },
     openChannelSettings() {
       console.log('open channel settings clicked');
       this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.channel.settings);
     },
     openChannelManagement() {
-      console.log('open channel management clicked');
       this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.channel.management);
+    },
+    syncChannelList() {
+      this.menus[this.channelFeatureIndex].children = this.channelList.map(channel => {
+        return {name: channel.name, icon: this.getChannelIcon(channel.type)};
+      });
     }
   },
 }

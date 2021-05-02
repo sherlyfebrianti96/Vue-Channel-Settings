@@ -31,8 +31,11 @@
 </template>
 
 <script>
+import channelMixin from "@/mixins/Channel";
+
 export default {
   name: 'ChannelManagementContent',
+  mixins: [channelMixin],
   props: {
     channelList: {
       type: Array,
@@ -44,18 +47,6 @@ export default {
   methods: {
     removeChannel(index) {
       this.$emit('removeChannel', index);
-    },
-    getChannelIcon(channelType) {
-      switch (channelType) {
-        case 'whatsapp':
-          return 'fab fa-whatsapp'
-        case 'email':
-          return 'far fa-envelope'
-        case 'phone':
-          return 'fas fa-phone'
-        default:
-          return '';
-      }
     }
   }
 }
