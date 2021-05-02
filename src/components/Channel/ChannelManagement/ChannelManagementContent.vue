@@ -10,7 +10,7 @@
     >
       <font-awesome-icon
         icon="grip-vertical"
-        class="mx-2 text-gray-300 inline-flex"
+        class="mx-2 text-gray-300 inline-flex cursor-move"
       />
       <div class="p-2 ml-1 mr-2 bg-gray-200 rounded-sm inline-flex">
         <font-awesome-icon :icon="getChannelIcon(channel.type)" />
