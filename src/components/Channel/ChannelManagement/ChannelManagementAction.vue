@@ -8,10 +8,11 @@
 
 <script>
 import ModalAction from "@/components/Modal/ModalAction";
-import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
+import sidebarMixin from "@/mixins/Sidebar";
 
 export default {
   name: 'ChannelManagementAction',
+  mixins: [sidebarMixin],
   components: {ModalAction},
   props: {
     channelList: {
@@ -42,12 +43,12 @@ export default {
   methods: {
     handleCancel() {
       this.$store.dispatch('channelKeywordUpdate', '');
-      this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.menu);
+      this.sidebarOpenMainFeature();
     },
     handleApply() {
       this.$store.dispatch('channelListUpdate', this.channelList);
       this.$store.dispatch('channelKeywordUpdate', '');
-      this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.menu);
+      this.sidebarOpenMainFeature();
     }
   }
 }

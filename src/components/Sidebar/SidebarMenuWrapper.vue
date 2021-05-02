@@ -30,6 +30,7 @@ import SidebarAction from "@/components/Sidebar/SidebarAction";
 import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
 import {mapGetters} from "vuex";
 import channelMixin from "@/mixins/Channel";
+import {DATA_MENU_LIST} from "@/data/MenuList";
 
 export default {
   name: 'SidebarMenuWrapper',
@@ -37,78 +38,7 @@ export default {
   mixins: [channelMixin],
   data() {
     return {
-      menus: [
-        {
-          name: 'Inbox',
-          expand: true,
-          children: [
-            {
-              name: 'New',
-              icon: 'fa-inbox',
-              badge: 17
-            },
-            {
-              name: 'Assigned',
-              icon: 'fa-user-friends',
-              badge: 110
-            },
-            {
-              name: 'Closed',
-              icon: 'fa-check',
-              badge: null
-            },
-            {
-              name: 'Spam',
-              icon: 'fa-exclamation-circle',
-              badge: null
-            }
-          ]
-        },
-        {
-          name: 'Personal',
-          expand: false,
-          children: []
-        },
-        {
-          name: 'Teams',
-          expand: false,
-          children: []
-        },
-        {
-          name: 'Channels',
-          expand: true,
-          children: [
-            {
-              name: 'New',
-              icon: 'fa-inbox'
-            },
-            {
-              name: 'Assigned',
-              icon: 'fa-user-friends'
-            },
-            {
-              name: 'Closed',
-              icon: 'fa-check'
-            },
-            {
-              name: 'Spam',
-              icon: 'fa-exclamation-circle'
-            }
-          ],
-          actions: [
-            {
-              name: 'Settings',
-              icon: 'fa-ellipsis-h',
-              emitter: 'channelSettings'
-            },
-            {
-              name: 'New Channel',
-              icon: 'fa-plus',
-              emitter: 'channelManagement'
-            }
-          ],
-        },
-      ],
+      menus: DATA_MENU_LIST,
       channelFeatureIndex: 0
     };
   },

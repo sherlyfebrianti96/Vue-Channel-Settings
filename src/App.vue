@@ -24,9 +24,11 @@ import SidebarToggle from "@/components/Sidebar/SidebarToggle";
 import ChannelAction from "@/components/Channel/ChannelAction";
 import {SIDEBAR_FEATURE} from "@/enum/SidebarFeature";
 import {DATA_CHANNEL_LIST} from "@/data/ChannelList";
+import sidebarMixin from "@/mixins/Sidebar";
 
 export default {
   name: 'App',
+  mixins: [sidebarMixin],
   components: {
     ChannelAction,
     SidebarToggle,
@@ -50,13 +52,10 @@ export default {
     }
   },
   created() {
-    this.openMainFeature();
+    this.sidebarOpenMainFeature();
     this.setDefaultChannelList();
   },
   methods: {
-    openMainFeature() {
-      this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.menu);
-    },
     setDefaultChannelList() {
       if (this.channelList.length <= 0) {
         this.$store.dispatch('channelListUpdate', DATA_CHANNEL_LIST);
