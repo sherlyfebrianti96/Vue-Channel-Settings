@@ -14,8 +14,8 @@
     "postcss": "^7.0.35",
     "postcss-loader": "^5.2.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0",
-    "vue": "^3.0.0",
-    "vuex": "^4.0.0-0"
+    "vue": "^2.6.11",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -25,7 +25,8 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11",
     "stylelint-config-recommended": "^4.0.0"
   },
   "eslintConfig": {
@@ -34,7 +35,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
+      "plugin:vue/essential",
       "eslint:recommended"
     ],
     "parserOptions": {

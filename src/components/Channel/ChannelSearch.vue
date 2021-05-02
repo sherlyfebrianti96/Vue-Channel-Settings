@@ -1,8 +1,7 @@
 <template>
   <BaseInput
     :placeholder="title"
-    :value="channelKeyword"
-    @change="inputChange"
+    :value="formControl"
     @keyup="handleKeyup"
   >
     <i
@@ -27,20 +26,17 @@ export default {
       required: true,
     }
   },
-  data() {
-    return {
-      searchInput: '',
-    }
-  },
   computed: {
     ...mapGetters({
       channelKeyword: 'channelKeyword',
     }),
+    formControl() {
+      return {
+        value: this.channelKeyword
+      };
+    }
   },
   methods: {
-    inputChange(e) {
-      this.$emit('change', e);
-    },
     handleKeyup(e) {
       this.$store.dispatch('channelKeywordUpdate', e.target.value);
       this.$emit('keyup', e);

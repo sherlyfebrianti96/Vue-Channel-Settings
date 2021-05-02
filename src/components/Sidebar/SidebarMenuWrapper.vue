@@ -15,10 +15,13 @@
         @channelSettings="openChannelSettings"
         @channelManagement="openChannelManagement"
       />
-      <SidebarSubmenu
-        v-if="menu.expand"
-        :submenus="menu.children"
-      />
+      <template v-if="menu.expand">
+        <SidebarSubmenu
+          v-for="(submenu, i) in menu.children"
+          :key="`submenu-${i}`"
+          :submenu="submenu"
+        />
+      </template>
     </div>
   </div>
 </template>

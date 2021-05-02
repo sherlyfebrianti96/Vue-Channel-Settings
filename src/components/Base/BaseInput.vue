@@ -1,7 +1,7 @@
 <template>
   <div class="mb-3 relative">
     <input
-      v-model="inputValue"
+      v-model="formControl.value"
       type="text"
       class="border-solid border border-gray-300 rounded-md w-full py-2 pl-7 pr-16"
       :placeholder="placeholder"
@@ -16,18 +16,17 @@
 export default {
   name: 'BaseInput',
   props: {
-    value: {
-      type: String,
-      default: ''
+    formControl: {
+      type: Object,
+      default: () => {
+        return {
+          value: ''
+        };
+      }
     },
     placeholder: {
       type: String,
       required: true,
-    }
-  },
-  computed: {
-    inputValue() {
-      return this.value;
     }
   },
   methods: {

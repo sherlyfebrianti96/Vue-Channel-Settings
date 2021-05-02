@@ -11,9 +11,10 @@
           class="text-center"
       />
     </div>
+
+    <!-- Modal -->
+    <ChannelAction v-if="!isMainFeatureActive" />
   </div>
-  <!-- Modal -->
-  <ChannelAction v-if="!isMainFeatureActive" />
 </template>
 
 <script>

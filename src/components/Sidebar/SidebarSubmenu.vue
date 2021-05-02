@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-for="(submenu, i) in submenus"
-    :key="`submenu-${i}`"
-    class="relative cursor-pointer pl-10 pr-5 pt-1 pb-1 text-gray-500 hover:bg-gray-100"
-  >
+  <div class="relative cursor-pointer pl-10 pr-5 pt-1 pb-1 text-gray-500 hover:bg-gray-100">
     <i
       class="fas text-sm"
       :class="submenu.icon"
@@ -24,8 +20,8 @@
 export default {
   name: 'SidebarSubmenu',
   props: {
-    submenus: {
-      type: Array,
+    submenu: {
+      type: Object,
       required: true,
     }
   }
