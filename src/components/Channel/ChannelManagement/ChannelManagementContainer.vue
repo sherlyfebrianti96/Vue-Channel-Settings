@@ -4,35 +4,11 @@
       title="Add new channel"
       @keyup="handleChannelSearch"
     />
-    <div class="my-3 channel-list overflow-y-scroll">
-      <div
-        v-for="(channel, i) in filteredChannel"
-        :key="`channel-${i}`"
-        class="py-3 align-middle relative hover:bg-gray-100"
-      >
-        <i class="fas fa-grip-vertical mx-2 text-gray-300 inline-flex" />
-        <div class="p-2 ml-1 mr-2 bg-gray-200 rounded-sm inline-flex">
-          <i class="fab fa-whatsapp" />
-        </div>
-        <div class="channel-name inline-flex">
-          <span class="overflow-ellipsis whitespace-nowrap overflow-hidden">
-            {{ channel.name }}
-          </span>
-        </div>
-        <div
-          class="text-xs text-gray-400 p-1 absolute right-2 top-4 hover:text-red-600 cursor-pointer"
-          @click="removeChannel(i)"
-        >
-          Remove
-        </div>
-      </div>
-      <div
-        v-if="filteredChannel.length <= 0"
-        class="pt-3 px-3 align-middle relative hover:bg-gray-100"
-      >
-        No channel available.
-      </div>
-    </div>
+
+    <ChannelManagementContent
+      :channel-list="filteredChannel"
+      @removeChannel="removeChannel"
+    />
 
     <ChannelManagementAction :channel-list="tmpChannelList" />
   </div>
@@ -43,10 +19,11 @@ import ChannelSearch from "@/components/Channel/ChannelSearch";
 import {mapGetters} from "vuex";
 import {CHANNEL_ITEM_DEFAULT} from "@/enum/ChannelItemDefault";
 import ChannelManagementAction from "@/components/Channel/ChannelManagement/ChannelManagementAction";
+import ChannelManagementContent from "@/components/Channel/ChannelManagement/ChannelManagementContent";
 
 export default {
   name: 'ChannelManagementContainer',
-  components: {ChannelManagementAction, ChannelSearch},
+  components: {ChannelManagementContent, ChannelManagementAction, ChannelSearch},
   data() {
     return {
       filteredChannel: [],

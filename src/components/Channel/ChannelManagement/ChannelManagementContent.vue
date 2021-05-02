@@ -1,0 +1,60 @@
+<template>
+  <div class="my-3 channel-list overflow-y-scroll">
+    <div
+      v-for="(channel, i) in channelList"
+      :key="`channel-${i}`"
+      class="py-3 align-middle relative hover:bg-gray-100"
+    >
+      <i class="fas fa-grip-vertical mx-2 text-gray-300 inline-flex" />
+      <div class="p-2 ml-1 mr-2 bg-gray-200 rounded-sm inline-flex">
+        <i class="fab fa-whatsapp" />
+      </div>
+      <div class="channel-name inline-flex">
+          <span class="overflow-ellipsis whitespace-nowrap overflow-hidden">
+            {{ channel.name }}
+          </span>
+      </div>
+      <div
+        class="text-xs text-gray-400 p-1 absolute right-2 top-4 hover:text-red-600 cursor-pointer"
+        @click="removeChannel(i)"
+      >
+        Remove
+      </div>
+    </div>
+    <div
+      v-if="channelList.length <= 0"
+      class="pt-3 px-3 align-middle relative hover:bg-gray-100"
+    >
+      No channel available.
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ChannelManagementContent',
+  props: {
+    channelList: {
+      type: Array,
+      default: () => {
+        return [];
+      }
+    }
+  },
+  methods: {
+    removeChannel(index) {
+      this.$emit('removeChannel', index);
+    },
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.channel-name {
+  max-width: calc(100% - 140px);
+}
+.channel-list {
+  max-height: 50vh;
+}
+</style>
