@@ -36,6 +36,7 @@ export default {
     ...mapGetters({
       sidebarExpand: 'sidebarExpand',
       sidebarActiveFeature: 'sidebarActiveFeature',
+      channelList: 'channelList',
     }),
     containerWidth() {
       if (this.sidebarExpand) {
@@ -49,10 +50,50 @@ export default {
   },
   created() {
     this.openMainFeature();
+    this.setDefaultChannelList();
   },
   methods: {
     openMainFeature() {
       this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.menu);
+      // this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.channel.management);
+    },
+    setDefaultChannelList() {
+      if (this.channelList.length <= 0) {
+        const channels = [
+          {
+            name: 'Team@trengo.com',
+            type: 'phone',
+            active: true,
+            notification: false,
+          },
+          {
+            name: 'Call Center',
+            type: 'phone',
+            active: true,
+            notification: false,
+          },
+          {
+            name: 'Whatsapp Business',
+            type: 'whatsapp',
+            active: true,
+            notification: false,
+          },
+          {
+            name: '(test) development California',
+            type: 'email',
+            active: true,
+            notification: false,
+          },
+          {
+            name: 'Whatsapp Business Iceland',
+            type: 'whatsapp',
+            active: true,
+            notification: false,
+          }
+        ];
+
+        this.$store.dispatch('channelListUpdate', channels);
+      }
     }
   },
 }
