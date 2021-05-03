@@ -1,6 +1,7 @@
 <template>
   <Container
     class="my-3 channel-list overflow-y-scroll"
+    drag-handle-selector=".cursor-move"
     @drop="handleOnDrop"
   >
     <Draggable
