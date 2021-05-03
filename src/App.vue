@@ -7,7 +7,7 @@
     >
       <SidebarToggle class="left-4" />
       <HelloWorld
-          msg="Welcome to Your Vue.js App"
+          msg="Welcome to Lorem Ipsum"
           class="text-center"
       />
     </div>
