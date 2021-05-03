@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 w-full h-screen">
+  <div class="fixed top-0 w-full h-screen z-10">
     <div
       class="w-full h-full bg-gray-800 opacity-70 animate-backdrop"
     />
