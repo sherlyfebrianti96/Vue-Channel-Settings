@@ -2,7 +2,9 @@
 
 ## Description
 
-This is a simple channel settings on communication platform.
+This is a channel settings and management on communication platform.
+
+![Banner](./documentation/banner.png)
 
 #### Project specification
 
@@ -21,7 +23,7 @@ This is a simple channel settings on communication platform.
 
 ## Features
 
-### Features in Channel Management
+### Features in Channel Management (+)
 
 <sup>Notes : All changes for the channel data will be save after clicking on the `Apply` button.</sup>
 
@@ -37,7 +39,7 @@ This feature can be used for searching the channel ![SearchAndAddNewChannel](./d
 
 This feature can be used for removing the channel
 
-### Features in Channel Settings
+### Features in Channel Settings (‧‧‧)
 
 #### Search channel
 
