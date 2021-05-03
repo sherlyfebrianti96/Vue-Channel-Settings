@@ -45,11 +45,10 @@ export default {
   },
   methods: {
     handleChannelSearch(e) {
-      this.handleChannelFilter();
       if (e.key === 'Enter') {
         this.resetChannelKeyword();
-        this.handleChannelFilter();
       }
+      this.handleChannelFilter();
     },
     handleChannelFilter() {
       this.filteredChannel = this.getFilteredChannel(this.tmpChannelList, this.channelKeyword);
