@@ -5,9 +5,15 @@
 // check out the link below and learn how to write your first test:
 // https://on.cypress.io/writing-first-test
 
+import {DATA_CHANNEL_LIST} from "~/../../src/data/ChannelList";
+
 describe('Page First Load', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/');
+    cy.visit('http://localhost:8080/', {
+      onBeforeLoad: function (window) {
+        window.localStorage.setItem('channelList', JSON.stringify(DATA_CHANNEL_LIST));
+      }
+    });
     cy.viewport('macbook-15');
   });
 
