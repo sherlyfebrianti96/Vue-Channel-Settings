@@ -9,9 +9,7 @@
       icon="search"
       class="absolute top-3 left-2 text-gray-300"
     />
-    <div class="absolute top-3 right-5 text-gray-400 text-xs align-middle">
-      Enter
-    </div>
+    <slot />
   </BaseInput>
 </template>
 

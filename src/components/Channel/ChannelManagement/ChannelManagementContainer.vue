@@ -3,7 +3,11 @@
     <ChannelSearch
       title="Add new channel"
       @keyup="handleChannelSearch"
-    />
+    >
+      <div class="absolute top-3 right-5 text-gray-400 text-xs align-middle">
+        Enter
+      </div>
+    </ChannelSearch>
 
     <ChannelManagementContent
       :channel-list="filteredChannel"

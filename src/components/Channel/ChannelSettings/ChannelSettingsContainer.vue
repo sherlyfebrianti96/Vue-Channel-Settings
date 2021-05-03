@@ -48,6 +48,7 @@ export default {
       this.handleChannelFilter();
       if (e.key === 'Enter') {
         this.resetChannelKeyword();
+        this.handleChannelFilter();
       }
     },
     handleChannelFilter() {
