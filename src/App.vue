@@ -1,11 +1,15 @@
 <template>
   <div class="relative top-0">
+    <SidebarToggle
+      v-if="!sidebarExpand"
+      class="md:hidden z-10 left-4"
+    />
     <SidebarContainer v-if="sidebarExpand" />
     <div
       class="container mx-auto pt-10 pb-6 inline-block relative align-top"
-      :class="containerWidth"
+      :class="containerClass"
     >
-      <SidebarToggle class="left-4" />
+      <SidebarToggle class="left-4 hidden md:block" />
       <HelloWorld
           msg="Welcome to Lorem Ipsum"
           class="text-center"
@@ -42,9 +46,9 @@ export default {
       sidebarActiveFeature: 'sidebarActiveFeature',
       channelList: 'channelList',
     }),
-    containerWidth() {
+    containerClass() {
       if (this.sidebarExpand) {
-        return 'md:w-6/12 lg:w-6/12 xl:w-10/12'
+        return 'md:w-6/12 lg:w-6/12 xl:w-10/12 hidden md:inline-block'
       }
       return 'w-full max-w-full';
     },
