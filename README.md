@@ -61,6 +61,17 @@ This application has been support the responsive web design.
 
 It means it can be run on multiple screen size.
 
+### End-to-end test
+
+This application has been tested using end-to-end `Cypress`.
+
+> Scenarios that has been covered :
+> - First page load
+> - Sidebar behavior
+> - Channel settings behavior
+
+This scenarios can be access from `/cypress/intergation` folder.
+
 
 ## Project commands
 
