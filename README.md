@@ -70,7 +70,7 @@ This application has been tested using end-to-end `Cypress`.
 > - Sidebar behavior
 > - Channel settings behavior
 
-This scenarios can be access from `/cypress/intergation` folder.
+This scenarios can be access from `/cypress/integration` folder.
 
 
 ## Project commands
