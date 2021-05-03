@@ -57,10 +57,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.channel-name {
-  max-width: calc(100% - 140px);
-}
-.channel-list {
-  max-height: 50vh;
-}
 </style>
