@@ -7,6 +7,7 @@
     >
       <SidebarMenu
         :menu="menu"
+        class="menu-group"
         @toggleMenuExpand="toggleMenuExpand(i)"
       />
       <SidebarAction
@@ -20,6 +21,7 @@
           v-for="(submenu, i) in menu.children"
           :key="`submenu-${i}`"
           :submenu="submenu"
+          class="submenu"
         />
       </template>
     </div>

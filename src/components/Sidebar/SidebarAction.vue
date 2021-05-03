@@ -1,5 +1,5 @@
 <template>
-  <div class="text-xs absolute leading-6 align-middle right-3 top-2 text-gray-400 cursor-pointer">
+  <div class="text-xs absolute leading-6 align-middle right-3 top-2 text-gray-400 cursor-pointer menu-action">
     <span
       v-for="(action, i) in actions"
       :key="`menu-${action.name}-action-${i}`"

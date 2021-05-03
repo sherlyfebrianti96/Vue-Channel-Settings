@@ -5,7 +5,7 @@
       :key="`action-${i}`"
       :name="action.name"
       :class="action.className"
-      class="first:ml-0 ml-2"
+      class="action-button first:ml-0 ml-2"
       @click="handleClick(action.emitter)"
     >
       {{ action.label }}
