@@ -1,4 +1,4 @@
-# Vue Channel Settings
+# Vue Channel Settings and Management
 
 ## Description
 
