@@ -29,7 +29,10 @@ const ChannelMixin = {
     },
     resetChannelKeyword() {
       this.$store.dispatch('channelKeywordUpdate', '');
-    }
+    },
+    getFilteredChannel(list, keyword) {
+      return (keyword) ? this.searchChannelList(list, keyword) : [...list];
+    },
   },
 };
 

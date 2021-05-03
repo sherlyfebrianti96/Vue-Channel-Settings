@@ -60,11 +60,7 @@ export default {
       return itemIsNotEmpty && itemHasBeenExist;
     },
     handleChannelFilter() {
-      if (this.channelKeyword) {
-        this.filteredChannel = this.searchChannelList(this.tmpChannelList, this.channelKeyword);
-      } else {
-        this.filteredChannel = [...this.tmpChannelList];
-      }
+      this.filteredChannel = this.getFilteredChannel(this.tmpChannelList, this.channelKeyword);
     },
     handleChannelSearch(e) {
       this.handleChannelFilter();
