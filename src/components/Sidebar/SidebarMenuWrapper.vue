@@ -64,7 +64,6 @@ export default {
       this.menus[id].expand = !this.menus[id].expand;
     },
     openChannelSettings() {
-      console.log('open channel settings clicked');
       this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.channel.settings);
     },
     openChannelManagement() {
