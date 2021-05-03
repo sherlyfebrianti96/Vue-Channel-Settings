@@ -4,8 +4,12 @@
       v-if="!sidebarExpand"
       class="md:hidden z-10 left-4"
     />
-    <SidebarContainer v-if="sidebarExpand" />
+    <SidebarContainer
+      v-if="sidebarExpand"
+      id="sidebar"
+    />
     <div
+      id="app"
       class="container mx-auto pt-10 pb-6 inline-block relative align-top"
       :class="containerClass"
     >

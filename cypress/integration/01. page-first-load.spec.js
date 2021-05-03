@@ -7,10 +7,27 @@
 
 describe('Page First Load', () => {
   beforeEach(() => {
-    cy.visit('https://example.cypress.io/commands/actions')
+    cy.visit('http://localhost:8080/');
+    cy.viewport('macbook-15');
   });
 
-  it('Does not do much!', () => {
-    expect(true).to.equal(true)
+  it('should show the sidebar and the container on first load', () => {
+    cy.get('#sidebar').should('exist');
+    cy.get('#app.container').should('exist');
+  });
+
+  describe('should open and close the sidebar when the sidebar toggle is clicked multiple times', () => {
+    it('should close the sidebar when the sidebar toggle is clicked', () => {
+      cy.get('.sidebar-toggle:visible').first().click();
+      cy.get('#sidebar').should('not.exist');
+      cy.get('#app.container').should('exist');
+    });
+
+    it('should open the sidebar when the sidebar toggle is clicked again', () => {
+      cy.get('.sidebar-toggle:visible').first().click();
+      cy.get('.sidebar-toggle:visible').first().click();
+      cy.get('#sidebar').should('exist');
+      cy.get('#app.container').should('exist');
+    });
   });
 });

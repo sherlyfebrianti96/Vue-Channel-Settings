@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute top-4 cursor-pointer p-2"
+    class="sidebar-toggle absolute top-4 cursor-pointer p-2"
     @click="toggle"
   >
     <font-awesome-icon
