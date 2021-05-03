@@ -84,5 +84,16 @@ npm run build
 npm run lint
 ```
 
+#### Run end-to-end test using Cypress
+
+To run the test, we need to use 2 Terminal windows.
+```
+// Terminal windows 1
+npm run serve
+
+// Terminal windows 2
+npm run test
+```
+
 #### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
