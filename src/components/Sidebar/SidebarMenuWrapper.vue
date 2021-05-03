@@ -71,9 +71,14 @@ export default {
       this.$store.dispatch('sidebarActiveFeatureUpdate', SIDEBAR_FEATURE.channel.management);
     },
     syncChannelList() {
-      this.menus[this.channelFeatureIndex].children = this.channelList.map(channel => {
-        return {name: channel.name, icon: this.getChannelIcon(channel.type)};
+      const items = [];
+      this.channelList.forEach(channel => {
+        if (channel.active) {
+          const item = {name: channel.name, icon: this.getChannelIcon(channel.type)};
+          items.push(item);
+        }
       });
+      this.menus[this.channelFeatureIndex].children = items;
     }
   },
 }
