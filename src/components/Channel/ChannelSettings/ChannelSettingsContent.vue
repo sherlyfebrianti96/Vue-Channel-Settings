@@ -22,8 +22,8 @@
       </div>-->
       <div
         :class="notificationClass(i)"
-        class="text-lg absolute right-14 top-4 cursor-pointer"
-        title="Enable Notification"
+        class="text-lg absolute right-14 top-4 cursor-pointer toggle-notification"
+        :title="`${channel.notification ? 'Enable' : 'Disable'} Notification`"
         @click="toggleNotification(channel)"
       >
         <font-awesome-icon
@@ -44,8 +44,8 @@
       </div>-->
       <div
         :class="activationClass(i)"
-        class="text-2xl absolute right-2 top-3 cursor-pointer"
-        title="Activate Channel"
+        class="text-2xl absolute right-2 top-3 cursor-pointer toggle-activation"
+        :title="`${channel.active ? 'Deactivate' : 'Activate'} Channel`"
         @click="toggleActivation(channel)"
       >
         <font-awesome-icon

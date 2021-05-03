@@ -2,6 +2,7 @@
   <BaseInput
     :placeholder="title"
     :form-control="formControl"
+    class="channel-search"
     @keyup="handleKeyup"
   >
     <font-awesome-icon
